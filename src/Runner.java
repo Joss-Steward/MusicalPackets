@@ -102,7 +102,6 @@ public class Runner {
 			s.playSound(new int[] {100, 100, i, i});
 			//Thread.sleep(100);
 		}
-		s.canFinish = true;
 		s.join();
 	}
 	

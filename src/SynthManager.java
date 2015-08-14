@@ -10,9 +10,7 @@ public class SynthManager extends Thread {
 	private Synthesizer synth;
 	private MidiChannel[] channels;
 	public boolean runFlag = true;
-	public boolean canFinish = false;
 	
-	//int channel = 0;
 	int durationMillis = 1000;
 	int durationNano =  durationMillis*1000;
 	
@@ -67,9 +65,6 @@ public class SynthManager extends Thread {
 				Note tmp = currentNotes.poll();
 				channels[tmp.channel].noteOff(tmp.pitch);
 			}
-			
-			if(currentNotes.isEmpty() && canFinish)
-				runFlag = false;
 			
 			try {
 				Thread.sleep(500);
