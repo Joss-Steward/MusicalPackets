@@ -13,11 +13,8 @@ import org.jnetpcap.protocol.network.Ip4;
 public class Runner {
 
 	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
-		
 		SynthManager s = new SynthManager();
 		s.start();
-		//Thread.sleep(1000);
 		
 		
 		List<PcapIf> alldevs = new ArrayList<PcapIf>(); // Will be filled with NICs  
@@ -42,7 +39,7 @@ public class Runner {
         }  
   
         
-        System.out.print("Please choose one of the above (only the number): ");
+        System.out.print("\nPlease choose one of the above (only the number): ");
         Scanner scan = new Scanner(System.in);
         int deviceNum = scan.nextInt();
         
@@ -70,11 +67,6 @@ public class Runner {
   
             public void nextPacket(PcapPacket packet, String user) {  
   
-//                System.out.printf("Received packet at %s caplen=%-4d len=%-4d\n",  
-//                    new Date(packet.getCaptureHeader().timestampInMillis()),   
-//                    packet.getCaptureHeader().caplen(),  // Length actually captured  
-//                    packet.getCaptureHeader().wirelen()
-//                    );  
             	try
             	{
             		byte[] sourceIp = packet.getHeader(new Ip4()).source();
@@ -89,22 +81,7 @@ public class Runner {
         pcap.loop(-1, jpacketHandler, "");  
   
         pcap.close();  
-		//test(s);
 		
 	}
-	
-	public static void test(SynthManager s) throws InterruptedException
-	{
-		s.playSound(new int[] {100, 100, 100, 100});
-		
-		for(int i = 0; i < 2550; i++)
-		{
-			s.playSound(new int[] {100, 100, i, i});
-			//Thread.sleep(100);
-		}
-		s.join();
-	}
-	
-	
 
 }

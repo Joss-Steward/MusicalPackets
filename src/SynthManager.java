@@ -16,10 +16,11 @@ public class SynthManager extends Thread {
 	
 	LinkedList<Note> currentNotes = new LinkedList<Note>();
 	
-	
+	//Note: the & 0xFF is due to Java's bytes being signed, where ip octets are unsigned
+	//This operation should turn them into unsigned bytes with the correct value
 	public void playSound(int octets[])
 	{
-		//10 channels that I know of, 0-9
+		//There are supposed to be 16 channels
 		int channel = (octets[0]& 0xFF + octets[2]& 0xFF) % 16;
 		
 		//128 different pitches, 0-127
