@@ -45,24 +45,6 @@ public class SynthManager extends Thread {
 		}
 	}
 	
-	public void playSound(String ipAddr)
-	{
-		playSound(getOctets(ipAddr));
-	}
-	
-	//Only supports IPv4 right now
-	public int[] getOctets(String ipAddr)
-	{
-		
-		String[] sOctets = ipAddr.split(".");
-		int[] iOctets = new int[4];
-		for(int i = 0; i < 4; i++)
-		{
-			iOctets[i] = Integer.parseInt(sOctets[i]);
-		}
-		return iOctets;
-	}
-	
 	
 	public void run()
 	{
