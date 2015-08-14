@@ -1,7 +1,8 @@
 import java.util.ArrayList;  
 import java.util.Date;  
-import java.util.List;  
-  
+import java.util.List;
+import java.util.Scanner;
+
 import org.jnetpcap.Pcap;  
 import org.jnetpcap.PcapIf;  
 import org.jnetpcap.packet.PcapPacket;  
@@ -16,7 +17,7 @@ public class Runner {
 		
 		SynthManager s = new SynthManager();
 		s.start();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		
 		
 		List<PcapIf> alldevs = new ArrayList<PcapIf>(); // Will be filled with NICs  
@@ -40,9 +41,15 @@ public class Runner {
             System.out.printf("#%d: %s [%s]\n", i++, device.getName(), description);  
         }  
   
-        PcapIf device = alldevs.get(12); // We know we have atleast 1 device  
+        
+        System.out.print("Please choose one of the above (only the number): ");
+        Scanner scan = new Scanner(System.in);
+        int deviceNum = scan.nextInt();
+        
+        
+        PcapIf device = alldevs.get(deviceNum); // We know we have atleast 1 device  
         System.out  
-            .printf("\nChoosing '%s' on your behalf:\n",  
+            .printf("\nChoosing '%s':\n",  
                 (device.getDescription() != null) ? device.getDescription()  
                     : device.getName());  
   
